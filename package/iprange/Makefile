@@ -12,6 +12,7 @@ PKG_VERSION:=1.0.4
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=https://github.com/firehol/iprange/releases/download/v$(PKG_VERSION)/
 PKG_MD5SUM:=f3126b8c239eaa51d79591748f091c7b
 
 PKG_LICENSE:=GPL-2.0-or-later
