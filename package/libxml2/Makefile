@@ -11,11 +11,10 @@ PKG_NAME:=libxml2
 PKG_VERSION:=2.9.13
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://gd.tuwien.ac.at/languages/libxml/ \
-	http://xmlsoft.org/sources/ \
-	ftp://fr.rpmfind.net/pub/libxml/
-PKG_MD5SUM:=f21079e9254def82c94676224a9e9dc3
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=http://xmlsoft.org/sources/ \
+	https://download.gnome.org/sources/libxml2/2.9/
+PKG_MD5SUM:=824470f8cc325ae6b01f174b842c321f
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=COPYING
