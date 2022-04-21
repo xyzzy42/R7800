@@ -15,7 +15,7 @@ DOWNLOAD_RDEP=$(STAMP_PREPARED) $(HOST_STAMP_PREPARED)
 define dl_method
 $(strip \
   $(if $(2),$(2), \
-    $(if $(filter @GNOME/% @GNU/% @KERNEL/% @SF/% ftp://% http://% https://% file://%,$(1)),default, \
+    $(if $(filter @GNOME/% @GNU/% @KERNEL/% @SF/% @GITHUB/% @SAVANNAH/% ftp://% http://% https://% file://%,$(1)),default, \
       $(if $(filter git://%,$(1)),git, \
         $(if $(filter svn://%,$(1)),svn, \
           $(if $(filter cvs://%,$(1)),cvs, \

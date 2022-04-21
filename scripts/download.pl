@@ -160,6 +160,19 @@ foreach my $mirror (@ARGV) {
 		push @mirrors, "ftp://ftp.eu.uu.net/pub/gnu/$1";
 		push @mirrors, "ftp://ftp.leo.org/pub/comp/os/unix/gnu/$1";
 		push @mirrors, "ftp://ftp.digex.net/pub/gnu/$1";
+	} elsif ($mirror =~ /^\@SAVANNAH\/(.+)$/) {
+		push @mirrors, "https://mirror.netcologne.de/savannah/$1";
+		push @mirrors, "https://mirror.csclub.uwaterloo.ca/nongnu/$1";
+		push @mirrors, "http://ftp.acc.umu.se/mirror/gnu.org/savannah/$1";
+		push @mirrors, "http://nongnu.uib.no/$1";
+		push @mirrors, "http://ftp.igh.cnrs.fr/pub/nongnu/$1";
+		push @mirrors, "ftp://cdimage.debian.org/mirror/gnu.org/savannah/$1";
+		push @mirrors, "ftp://ftp.acc.umu.se/mirror/gnu.org/savannah/$1";
+	} elsif ($mirror =~ /^\@GITHUB\/(.+)$/) {
+		# give github a few more tries (different mirrors)
+		for (1 .. 5) {
+			push @mirrors, "https://raw.githubusercontent.com/$1";
+		}
 	} elsif ($mirror =~ /^\@KERNEL\/(.+)$/) {
 		my @extra = ( $1 );
 		if ($filename =~ /linux-\d+\.\d+(?:\.\d+)?-rc/) {
@@ -168,12 +181,13 @@ foreach my $mirror (@ARGV) {
 			push @extra, "$extra[0]/longterm/v$1";
 		}		
 		foreach my $dir (@extra) {
-			push @mirrors, "ftp://ftp.all.kernel.org/pub/$dir";
-			push @mirrors, "http://ftp.all.kernel.org/pub/$dir";
-			push @mirrors, "ftp://ftp.de.kernel.org/pub/$dir";
-			push @mirrors, "http://ftp.de.kernel.org/pub/$dir";
-			push @mirrors, "ftp://ftp.fr.kernel.org/pub/$dir";
-			push @mirrors, "http://ftp.fr.kernel.org/pub/$dir";
+			push @mirrors, "https://cdn.kernel.org/pub/$dir";
+			push @mirrors, "https://download.xs4all.nl/ftp.kernel.org/pub/$dir";
+			push @mirrors, "https://mirrors.mit.edu/kernel/$dir";
+			push @mirrors, "http://ftp.nara.wide.ad.jp/pub/kernel.org/$dir";
+			push @mirrors, "http://www.ring.gr.jp/archives/linux/kernel.org/$dir";
+			push @mirrors, "ftp://ftp.riken.jp/Linux/kernel.org/$dir";
+			push @mirrors, "ftp://www.mirrorservice.org/sites/ftp.kernel.org/pub/$dir";
 		}
     } elsif ($mirror =~ /^\@GNOME\/(.+)$/) {
 		push @mirrors, "http://ftp.gnome.org/pub/GNOME/sources/$1";
