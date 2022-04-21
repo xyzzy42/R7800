@@ -5,6 +5,9 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+PROJECT_GIT = https://git.openwrt.org
+OPENWRT_GIT = $(PROJECT_GIT)
+LEDE_GIT = $(PROJECT_GIT)
 
 DOWNLOAD_RDEP=$(STAMP_PREPARED) $(HOST_STAMP_PREPARED)
 
