@@ -42,7 +42,7 @@ define dl_pack
 endef
 
 define DownloadMethod/unknown
-	@echo "ERROR: No download method available"; false
+	echo "ERROR: No download method available"; false
 endef
 
 define DownloadMethod/default
@@ -50,7 +50,7 @@ define DownloadMethod/default
 endef
 
 define wrap_mirror
-	$(if $(if $(MIRROR),$(filter-out x,$(MIRROR_MD5SUM))),@$(SCRIPT_DIR)/download.pl "$(DL_DIR)" "$(FILE)" "$(MIRROR_MD5SUM)" || ( $(1) ),$(1))
+	$(if $(if $(MIRROR),$(filter-out x,$(MIRROR_MD5SUM))),$(SCRIPT_DIR)/download.pl "$(DL_DIR)" "$(FILE)" "$(MIRROR_MD5SUM)" || ( $(1) ),$(1))
 endef
 
 define DownloadMethod/cvs
@@ -186,10 +186,10 @@ define Download
 	mkdir -p $(DL_DIR)
 	case $(FILE) in \
 		linux-3.*.tar.bz2) \
-			if [ "x$(LINUX_TREEISH)" = "x" ]; then $(if $(DownloadMethod/$(call dl_method,$(URL),$(PROTO))),$(DownloadMethod/$(call dl_method,$(URL),$(PROTO))),$(DownloadMethod/unknown)); else touch $(DL_DIR)/$(FILE); fi; \
+			if [ "x$(LINUX_TREEISH)" = "x" ]; then $(if $(DownloadMethod/$(call dl_method,$(URL),$(PROTO))),$(DownloadMethod/$(call dl_method,$(URL),$(PROTO))),$(DownloadMethod/unknown)) else touch $(DL_DIR)/$(FILE); fi \
 		;; \
 		*) \
-			$(if $(DownloadMethod/$(call dl_method,$(URL),$(PROTO))),$(DownloadMethod/$(call dl_method,$(URL),$(PROTO))),$(DownloadMethod/unknown)); \
+			$(if $(DownloadMethod/$(call dl_method,$(URL),$(PROTO))),$(DownloadMethod/$(call dl_method,$(URL),$(PROTO))),$(DownloadMethod/unknown)) \
 		;; \
 	esac
 endef
