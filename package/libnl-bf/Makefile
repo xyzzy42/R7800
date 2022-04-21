@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libnl-bf
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=git://github.com/tgraf/libnl.git
+PKG_SOURCE_URL:=https://github.com/tgraf/libnl.git
 PKG_BRANCH:=master
 PKG_REV:=7d47666eb3c414feb8901970d35b96461214c2bf
 PKG_VERSION:=g$(PKG_REV)
