@@ -61,7 +61,7 @@ ifeq ($(findstring linaro, $(CONFIG_GCC_VERSION)),linaro)
     HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(GCC_DIR)
 else
   PKG_SOURCE_URL:=@GNU/gcc/gcc-$(PKG_VERSION)
-  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 
   ifeq ($(PKG_VERSION),4.4.7)
     PKG_MD5SUM:=295709feb4441b04e87dea3f1bab4281
