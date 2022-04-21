@@ -8,7 +8,8 @@ BASENAME:=dnscrypt-proxy
 PKG_NAME:=$(BASENAME)-2
 PKG_VERSION:=2.1.1
 PKG_RELEASE:=1
-PKG_SOURCE=$(BASENAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=$(BASENAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://github.com/DNSCrypt/dnscrypt-proxy/archive/refs/tags/$(PKG_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(BASENAME)-$(PKG_VERSION)
 
 INSTALL_UPX:=upx --ultra-brute -o
