@@ -160,6 +160,7 @@ endif
 
 ifeq ($(LIBC),uClibc)
   GCC_CONFIGURE+= \
+		--disable-libsanitizer \
 		--disable-__cxa_atexit
 else
   GCC_CONFIGURE+= \
