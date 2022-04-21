@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/toolchain-build.mk
 define Host/Configure
 	(cd $(HOST_BUILD_DIR); \
 		gdb_cv_func_sigsetjmp=yes \
-		CFLAGS="-O2" \
+		CFLAGS="-O2 -fcommon" \
 		$(HOST_BUILD_DIR)/configure \
 		--prefix=$(TOOLCHAIN_DIR) \
 		--build=$(GNU_HOST_NAME) \
