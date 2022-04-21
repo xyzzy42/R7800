@@ -38,6 +38,7 @@ define Package/libgdbm/description
   works similar to the standard UNIX dbm routines.
 endef
 
+TARGET_CFLAGS += -D_GNU_SOURCE
 CONFIGURE_ARGS += \
 	--enable-shared \
 	--enable-static
