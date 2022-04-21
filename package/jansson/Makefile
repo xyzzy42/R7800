@@ -14,7 +14,7 @@ PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://www.digip.org/jansson/releases/
+PKG_SOURCE_URL:=https://github.com/akheron/jansson/releases/download/v$(PKG_VERSION)/
 PKG_MD5SUM:=3f90473d7d54ebd1cb6a2757396641df
 
 include $(INCLUDE_DIR)/package.mk
