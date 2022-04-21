@@ -14,7 +14,7 @@ PKG_LICENSE:=BSD
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/stedolan/jq/releases/download/jq-$(PKG_VERSION)/
-PKG_MD5SUM:=f5f70ad5dc46d95e0128dc94c25c4d5d
+PKG_MD5SUM:=e68fbd6a992e36f1ac48c99bbf825d6b
 
 PKG_INSTALL:=1
 
