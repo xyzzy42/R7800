@@ -12,8 +12,8 @@ PKG_VERSION:=3.11
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://downloads.es.net/pub/iperf
-PKG_MD5SUM:=dad19233bc064cf6b113d98bb2971e02
+PKG_SOURCE_URL:=https://downloads.es.net/pub/iperf/
+PKG_MD5SUM:=cb38738a9d5ae3f235ce8cba9dd8fe08
 
 PKG_MAINTAINER:=Felix Fietkau <nbd@nbd.name>
 PKG_LICENSE:=BSD-3-Clause
