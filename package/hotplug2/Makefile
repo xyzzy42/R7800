@@ -13,10 +13,10 @@ PKG_REV:=201
 PKG_VERSION:=$(PKG_REV)
 PKG_RELEASE:=4
 
-PKG_SOURCE_PROTO:=svn
+#PKG_SOURCE_PROTO:=svn
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_SUBDIR:=hotplug2-$(PKG_VERSION)
-PKG_SOURCE_URL:=http://svn.nomi.cz/svn/isteve/hotplug2
+PKG_SOURCE_URL:=http://scw3sr02elb001-529496401.ap-northeast-1.elb.amazonaws.com/oss/audio/FCWLJ14A/
 PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
 #PKG_SOURCE_URL:=http://isteve.bofh.cz/~isteve/hotplug2
 #PKG_MD5SUM:=ea2c01d027b4002e4e6b0ff266f51a51
