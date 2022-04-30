@@ -3,7 +3,7 @@
 
 This is based openwrt, but by now it's a really old version.  Netgear releases their
 versions for their routers, and they're still updating it.  But Netgear's newest release
-has tons of old packages, bugs, and various "things" (AWS IoT, funsq, ...) that are
+has tons of old packages, bugs, and various "things" (AWS IoT, funsjq, ...) that are
 better left out.  So Voxel's massively updated and fixed up Netgear firmware.
 
 Except Voxel's source release, which is what this is forked from, doesn't build
@@ -18,14 +18,35 @@ it might be a slightly different than the binary.
 
 Getting Wifi Firmware
 ---------------------
-This needs firmware for the Qualcomm wifi chip, which is not anywhere on the
+This needs firmware for the Qualcomm NSS network offload engine, which is not anywhere on the
 internet.  Qualcomm wants to make their hardware as hard to use as possible and
 won't distribute the firmware or allow anyone else to do it either.
 
 So you've got to extract it from an existing R7800 image (Netgear or Voxel, same
 stuff).
 
-1. One can open the img file with 7zip.
+I've written a handy script to do it.  Run `scripts/r7800-nss-fw.py` on a
+existing R7800 firmware img file and it will extract the NSS files, detect the
+NSS version, and create a "source" tarball.  Example:
+```
+[~/R7800]$ scripts/r7800-nss-fw.py R7800-V1.0.2.93SF.img
+Image header detected, fw for R7800 version V1.0.2.93SF
+…
+…
+Success!
+Place NSS.AK.1.0.c8-00015.tar.bz2 into the dl directory
+
+[~/R7800]$ mv NSS.AK.1.0.c8-00015.tar.bz2 dl/
+```
+
+You need a recent version of squashfs-tools installed to run this.  The version
+that is built as part of this firmware build process is currently too old. 
+Maybe someone will update it.
+
+
+Or if you want to do it manually:
+
+1. Extract the rootfs.  7zip can do it.
 2. Find `/lib/firmware/qca-nss0-retail.bin` and `/lib/firmware/qca-nss1-retail.bin` and extract them from image.
 3. Rename them and put them in a directory tree as `NSS.AK.1.0.c8-00015/R/retail_router0.bin` and `NSS.AK.1.0.c8-00015/R/retail_router1.bin`.
 4. Make a tarball named `NSS.AK.1.0.c8-00015.tar.bz2` from this, e.g.:  
