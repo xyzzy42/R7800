@@ -4,6 +4,8 @@
 
 # Extract NSS firmware for R7800 firmware update images.
 # Does a new safety checks and automatically determines the NSS firmware image.
+#
+# Also extracts the Atheros Wifi firmware.
 
 import argparse
 import sys
@@ -66,7 +68,7 @@ if fw.tell() < header[3] + SQUASHFS_OFFSET:
 print(f"Firmware file appears ok, root squashfs size is {header[3]} bytes\n")
 
 with tempfile.TemporaryDirectory() as tmpdir:
-    ret = os.system(f"unsquashfs -o {SQUASHFS_OFFSET} -dest {tmpdir}/root {fw.name} /lib/firmware/qca-nss?-retail.bin")
+    ret = os.system(f"unsquashfs -o {SQUASHFS_OFFSET} -dest {tmpdir}/root {fw.name} /lib/firmware/qca-nss?-retail.bin /lib/firmware/QCA9984")
     if os.waitstatus_to_exitcode(ret) != 0:
         print("Error extracting squashfs image\nMaybe you do not have unsquashfs installed?  It's part of squashfs-tools")
         print("Or maybe it's too old to have the '-o' option?  Try version 4.5 or newer.")
@@ -97,7 +99,15 @@ with tempfile.TemporaryDirectory() as tmpdir:
     print(f"Creating archive {tarball}\n")
     ret = os.system(f"tar -jvcf {tarball} -C {tmp} {version}")
     if os.waitstatus_to_exitcode(ret) != 0:
-        print("Error creating tarball from firmware files")
+        print("Error creating tarball from NSS firmware files")
         exit(os.waitstatus_to_exitcode(ret))
 
-print(f"\nSuccess!\nPlace {tarball} into the dl directory")
+    # Guessing version number
+    wifi_tarball = "qca-wifi-fw-QCA9984_hw_1-CNSS.BL.3.0.2-00068-S-1.59256.1.tar.bz2"
+    print(f"\nCreating archive {wifi_tarball}")
+    ret = os.system(f"tar -jcf {wifi_tarball} -C {libfw} QCA9984")
+    if os.waitstatus_to_exitcode(ret) != 0:
+        print("Error creating tarball from Wifi firmware files")
+        exit(os.waitstatus_to_exitcode(ret))
+
+print(f"\nSuccess!\nPlace {tarball} and {wifi_tarball} into the dl directory")
