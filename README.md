@@ -16,27 +16,33 @@ Except Voxel hasn't released the full source to his binary builds, e.g. no
 toolchain directory, and the source released isn't always totally up to date, so
 it might be a slightly different than the binary.
 
-Getting Wifi Firmware
----------------------
-This needs firmware for the Qualcomm NSS network offload engine, which is not anywhere on the
-internet.  Qualcomm wants to make their hardware as hard to use as possible and
-won't distribute the firmware or allow anyone else to do it either.
+Getting NSS & Wifi Firmware
+---------------------------
+To build this you need the firmware for the Atheros Wifi and the Qualcomm NSS
+network offload engine, which is not anywhere on the Internet.  Qualcomm wants
+to make their hardware as hard to use as possible and won't distribute the
+firmware or allow anyone else to do it either.
 
 So you've got to extract it from an existing R7800 image (Netgear or Voxel, same
 stuff).
 
 I've written a handy script to do it.  Run `scripts/r7800-nss-fw.py` on a
-existing R7800 firmware img file and it will extract the NSS files, detect the
-NSS version, and create a "source" tarball.  Example:
+existing R7800 firmware img file and it will extract the NSS and Wifi files,
+detect the NSS version, and create "source" tarballs.  Example:
+
 ```
 [~/R7800]$ scripts/r7800-nss-fw.py R7800-V1.0.2.93SF.img
 Image header detected, fw for R7800 version V1.0.2.93SF
 …
 …
-Success!
-Place NSS.AK.1.0.c8-00015.tar.bz2 into the dl directory
+Creating archive NSS.AK.1.0.c8-00015.tar.bz2
+…
+Creating archive qca-wifi-fw-QCA9984_hw_1-CNSS.BL.3.0.2-00068-S-1.59256.1.tar.bz2
 
-[~/R7800]$ mv NSS.AK.1.0.c8-00015.tar.bz2 dl/
+Success!
+Place NSS.AK.1.0.c8-00015.tar.bz2 and qca-wifi-fw-QCA9984_hw_1-CNSS.BL.3.0.2-00068-S-1.59256.1.tar.bz2 into the dl directory
+
+[~/R7800]$ mv NSS.AK.1.0.c8-00015.tar.bz2 qca-wifi-fw-QCA9984_hw_1-CNSS.BL.3.0.2-00068-S-1.59256.1.tar.bz2 dl/
 ```
 
 You need a recent version of squashfs-tools installed to run this.  The version
@@ -44,7 +50,7 @@ that is built as part of this firmware build process is currently too old.
 Maybe someone will update it.
 
 
-Or if you want to do it manually:
+Or if you really want to do it manually:
 
 1. Extract the rootfs.  7zip can do it.
 2. Find `/lib/firmware/qca-nss0-retail.bin` and `/lib/firmware/qca-nss1-retail.bin` and extract them from image.
@@ -78,6 +84,9 @@ everything.
 
 The result will be the file `bin/ipq806x/R7800-Vxxxxx.img`.
 
+Ignore the `compile.sh` script.  It's for one specific person's system and there
+is no sense in using it.
+
 Problems Building
 -----------------
 
@@ -93,5 +102,4 @@ The last package name printed out, like `make[3] -C toolchain/gdb prepare` or
 (`gdb` and `angular-loadcontent`).  You can probably turn it off it doesn't look
 useful to you.  Do this by editing the .config file.  Don't use `make
 menuconfig` to do it from the config menu, as that is broken.
-
 
